@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "284148883755",
+    "firebase_url": "https://ag-shopping-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ag-shopping",
+    "storage_bucket": "ag-shopping.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284148883755:android:443d3616529c5f6d7f256e",
+        "android_client_info": {
+          "package_name": "com.alycode.agshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284148883755-or1qvlfpfovf1km7vqc31c1k0cgk1btf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADINfIWtR5tjaWkq01gxKM7Vsrnnv1dBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284148883755-or1qvlfpfovf1km7vqc31c1k0cgk1btf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
