@@ -6,34 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.ProductDetails">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/productColorSlider"
-            android:layout_width="243dp"
-            android:layout_height="202dp"
-            android:layout_marginStart="28dp"
+        <!-- TODO: Update blank fragment layout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/productColorSlider_viewPager2"
+                android:layout_width="243dp"
+                android:layout_height="202dp"
+                android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_shape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/colorGroup"
+            android:id="@+id/colorGroup_radioGroup"
             android:layout_width="55dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="104dp"
             android:background="@drawable/shape_leaf"
             android:gravity="center"
             android:minHeight="201dp"
-            app:layout_constraintBottom_toBottomOf="@+id/productColorSlider"
+            app:layout_constraintBottom_toBottomOf="@+id/productColorSlider_viewPager2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.541"
-            app:layout_constraintStart_toEndOf="@id/productColorSlider"
-            app:layout_constraintTop_toTopOf="@+id/productColorSlider"
+            app:layout_constraintStart_toEndOf="@id/productColorSlider_viewPager2"
+            app:layout_constraintTop_toTopOf="@+id/productColorSlider_viewPager2"
             app:layout_constraintVertical_bias="1.0">
 
             <RadioButton
@@ -67,26 +71,28 @@
                 android:clickable="true" />
         </RadioGroup>
 
-        <LinearLayout
-            android:id="@+id/product_attribute_layout"
-            android:layout_width="245dp"
-            android:layout_height="170dp"
-            android:layout_marginTop="128dp"
-            android:background="@drawable/shape_leaf"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@+id/productColorSlider"
-            app:layout_constraintTop_toBottomOf="@id/productColorSlider">
+            <LinearLayout
+                android:id="@+id/product_attribute_layout"
+                android:layout_width="245dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/shape_leaf"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/productColorSlider_viewPager2"
+                app:layout_constraintTop_toBottomOf="@id/productColorSlider_viewPager2">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="18dp"
-                android:text="Nashville armchair"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/txt_view_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="18dp"
+                    android:text="Nashville armchair"
+                    android:textSize="18sp" />
 
-            <androidx.appcompat.widget.AppCompatRatingBar
-                style="?android:attr/ratingBarStyleIndicator"
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/product_ratingbar"
+                    style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -96,6 +102,7 @@
                 android:theme="@style/RatingBar" />
 
             <TextView
+                android:id="@+id/product_price_txtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -116,12 +123,15 @@
             app:layout_constraintTop_toTopOf="@+id/product_attribute_layout">
 
             <ImageView
+                android:id="@+id/remove_oneProduct_ImageView_as_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:clickable="true"
                 android:src="@drawable/minus_icon" />
 
             <TextView
+                android:id="@+id/product_number_inCar_txtView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -130,6 +140,7 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/add_oneProduct_ImageView_as_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -138,30 +149,34 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/product_details_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:padding="8dp"
-            android:text="A contemporary twist on classic mid-century modern design."
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_attribute_layout" />
 
-        <Button
-            style="@style/CustomCardCorners"
-            android:layout_width="280dp"
-            android:layout_height="65dp"
-            android:backgroundTint="@color/black"
-            android:text="add to car"
-            app:icon="@drawable/shopping_car_icon"
-            app:iconGravity="textStart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_details_view" />
+            <TextView
+                android:id="@+id/product_description_txt_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="A contemporary twist on classic mid-century modern design."
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="26dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_add_to_car"
+                app:layout_constraintTop_toBottomOf="@+id/product_attribute_layout" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_add_to_car"
+                style="@style/CustomCardCorners"
+                android:layout_width="280dp"
+                android:layout_height="65dp"
+                android:backgroundTint="@color/black"
+                android:text="add to car"
+                app:icon="@drawable/shopping_car_icon"
+                app:iconGravity="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </FrameLayout>

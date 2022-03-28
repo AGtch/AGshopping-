@@ -8,39 +8,47 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alycode.agshopping.R
 import com.alycode.agshopping.data.pojo.ProductModel
-import com.alycode.agshopping.ui.view.ProductOnClickListener
 import com.squareup.picasso.Picasso
 
-class AdapterMainProductsRecyclerView(private var productsList: MutableList<ProductModel>) :
+class AdapterMainProductsRecyclerView :
     RecyclerView.Adapter<AdapterMainProductsRecyclerView.ProductViewHolder>() {
-
-
-    lateinit var productOncClickListener: ProductOnClickListener
-
-    fun setProductOnClickListener(listener: ProductOnClickListener) {
-        productOncClickListener = listener
-    }
-
+    private var productsList: List<ProductModel>? = null
+    lateinit var itemClicked: ItemClicked
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : ProductViewHolder {
+
         //initialize viewHolder and its associated the view without fill data
         val viewLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.product_item, parent, false)
-        return ProductViewHolder(viewLayout, productOncClickListener)
+        return ProductViewHolder(viewLayout)
     }
 
 
     override fun onBindViewHolder(viewHolder: ProductViewHolder, position: Int) {
-        Picasso.get().load(productsList[position].productImage).into(viewHolder.productImage)
-        viewHolder.productName.text = productsList[position].productName
-        viewHolder.productPrice.text = productsList[position].productPrice.toString()
+        var product = productsList?.get(position)
+        Picasso.get().load(product!!.productImage).into(viewHolder.productImage)
+        viewHolder.productName.text = product.productName
+        viewHolder.productPrice.text = product.productPrice.toString()
+
+        viewHolder.itemView.setOnClickListener {
+            itemClicked.getItemCLiked(productsList?.get(position)!!)
+        }
     }
 
     override fun getItemCount(): Int {
-        return productsList.size
+        if (productsList != null)
+            return productsList!!.size
+        return 0
     }
 
-    class ProductViewHolder(view: View, listener: ProductOnClickListener) :
+
+    fun setProductData(products: List<ProductModel>, itemClicked: ItemClicked) {
+        this.productsList = products
+        this.itemClicked = itemClicked
+        notifyDataSetChanged()
+    }
+
+    class ProductViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         val productName: TextView
         val productPrice: TextView
@@ -50,8 +58,10 @@ class AdapterMainProductsRecyclerView(private var productsList: MutableList<Prod
             productName = view.findViewById(R.id.product_name)
             productPrice = view.findViewById(R.id.product_price)
             productImage = view.findViewById(R.id.product_image)
-            view.setOnClickListener { listener.productOnClickListener(adapterPosition) }
         }
     }
 
+    interface ItemClicked {
+        fun getItemCLiked(productModel: ProductModel)
+    }
 }

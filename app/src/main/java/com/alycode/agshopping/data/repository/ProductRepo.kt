@@ -9,28 +9,35 @@ import com.google.firebase.ktx.Firebase
 
 class ProductRepo(
     private val firebaseDatabase: FirebaseDatabase? = Firebase.database,
-    private val reference: DatabaseReference? = firebaseDatabase?.getReference("products")
+    private val reference: DatabaseReference? = firebaseDatabase?.reference?.child("products")
 ) {
-    fun getResponseFromRealtimeDatabaseUsingLiveData(): MutableLiveData<MutableList<ProductModel>> {
-        val mutableLiveData = MutableLiveData<MutableList<ProductModel>>()
-        val mutableListProduct: MutableList<ProductModel> = mutableListOf()
+    lateinit var mutableLiveData: MutableLiveData<MutableList<ProductModel>>
+    lateinit var product: ProductModel
+    var mutableListProduct: MutableList<ProductModel> = mutableListOf()
+
+
+    fun getAllProductFromFirebaseUsingLiveData(): MutableLiveData<MutableList<ProductModel>> {
+
+        mutableLiveData = MutableLiveData<MutableList<ProductModel>>()
+        mutableListProduct.clear()
         reference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 snapshot.children.forEach {
-                    val product = ProductModel(
-                        it.child("name").value.toString(),
-                        it.child("descrption").value.toString(),
-                        it.child("price").value.toString(),
-                        it.child("Quantity").value.toString(),
-                        it.child("image").value.toString()
+                    product = ProductModel(
+                        it.child("productName").value.toString(),
+                        it.child("productDescription").value.toString(),
+                        it.child("productPrice").value.toString(),
+                        it.child("productQuantity").value.toString(),
+                        it.child("productImage").value.toString()
                     )
                     mutableListProduct.add(product)
                 }
                 mutableLiveData.postValue(mutableListProduct)
+                Log.d("snapshotDATA", "onDataChange: ${mutableListProduct.size}")
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("errofirev", "  onCancelled:  ${error.message}")
+                Log.d("errorInGetData", "  onCancelled:  ${error.message}")
             }
         })
         return mutableLiveData

@@ -2,12 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView_id"
-    style="@style/CustomCardCorners"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:background="@drawable/shape_leaf"
-    android:radius="12dp">
+    android:background="@drawable/shape_leaf">
 
     <ImageView
         android:id="@+id/product_image"

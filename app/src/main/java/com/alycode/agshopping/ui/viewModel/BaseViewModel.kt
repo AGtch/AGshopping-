@@ -7,7 +7,8 @@ import com.alycode.agshopping.data.repository.ProductRepo
 
 open class BaseViewModel(private val repository: ProductRepo = ProductRepo()) : ViewModel() {
 
-    fun getResponseUsingLiveData(): LiveData<MutableList<ProductModel>> {
-        return repository.getResponseFromRealtimeDatabaseUsingLiveData()
+    fun getAllProductFromFirebaseUsingLiveData(): LiveData<MutableList<ProductModel>> {
+        return repository.getAllProductFromFirebaseUsingLiveData()
     }
+
 }

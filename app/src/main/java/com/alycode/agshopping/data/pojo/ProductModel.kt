@@ -5,5 +5,6 @@ data class ProductModel(
     var productDescription: String? = null,
     var productPrice: String? = null,
     var productQuantity: String? = null,
-    var productImage: String? = null
+    var productImage: String? = null,
 )
+

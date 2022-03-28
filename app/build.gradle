@@ -5,10 +5,11 @@ plugins {
 
 android {
     compileSdk 31
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.alycode.agshopping"
-        minSdk 26
+        minSdk 27
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -29,6 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
+
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
@@ -62,8 +67,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:29.2.0')
-    // Declare the dependency for the Realtime Database library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
+    //ViewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
     implementation 'com.google.firebase:firebase-database-ktx'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
