@@ -6,15 +6,14 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 
-class ProductFirebase {
-        var firebaseDatabase: FirebaseDatabase? = Firebase.database
-    var refrence: DatabaseReference? = firebaseDatabase?.getReference("products")
-    companion object FirebaseInstance {
-        private val firebaseDatabase: FirebaseDatabase? by lazy {
-            Firebase.database
-        }
-        val reference: DatabaseReference? by lazy {
-            firebaseDatabase?.getReference("products")
-        }
+object ProductFirebase {
+    var instance: ProductFirebase = ProductFirebase
+
+    private val firebase: FirebaseDatabase = Firebase.database
+    val rootReference: DatabaseReference = firebase.getReference("products")
+
+
+    fun getColorsReference(subChild: String): DatabaseReference {
+        return rootReference.child(subChild).child("colors")
     }
 }

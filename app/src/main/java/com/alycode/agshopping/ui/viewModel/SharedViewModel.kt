@@ -6,13 +6,18 @@ import androidx.lifecycle.ViewModel
 import com.alycode.agshopping.data.pojo.ProductModel
 
 
-class SharedViewModel() :
+class SharedViewModel :
     ViewModel() {
 
     private val _clickedProductDetails = MutableLiveData<ProductModel>()
-    val clickedProductDetails: LiveData<ProductModel> by lazy { _clickedProductDetails }
+    private var clickedProductDetails: LiveData<ProductModel> = _clickedProductDetails
 
     fun setProductDetails(productModel: ProductModel) {
         _clickedProductDetails.value = productModel
+    }
+
+    fun getProductDetails(): LiveData<ProductModel> {
+        return clickedProductDetails
+
     }
 }

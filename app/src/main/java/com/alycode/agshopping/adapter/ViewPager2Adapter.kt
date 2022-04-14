@@ -11,6 +11,9 @@ import com.squareup.picasso.Picasso
 class ViewPager2Adapter(private val productColorImageList: List<String>) :
     RecyclerView.Adapter<ViewPager2Adapter.ImageViewHolder>() {
 
+
+    lateinit var colorsMaps: MutableMap<String, String>
+
     inner class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val productColorImage: ImageView = view.findViewById(R.id.product_images)
     }
@@ -27,6 +30,6 @@ class ViewPager2Adapter(private val productColorImageList: List<String>) :
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return productColorImageList.size
     }
 }

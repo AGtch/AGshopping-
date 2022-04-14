@@ -12,6 +12,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- specify shared element transitions -->
+
     </style>
 
     <style name="CustomCardCorners" parent="@style/Widget.MaterialComponents.Button">
@@ -39,4 +43,5 @@
     <style name="RatingBar" parent="Widget.AppCompat.RatingBar.Indicator">
         <item name="colorControlActivated">@color/goldenColor</item>
     </style>
+
 </resources>

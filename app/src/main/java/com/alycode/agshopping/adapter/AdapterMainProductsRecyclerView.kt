@@ -7,16 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alycode.agshopping.R
+import com.alycode.agshopping.adapter.AdapterMainProductsRecyclerView.ProductViewHolder
 import com.alycode.agshopping.data.pojo.ProductModel
 import com.squareup.picasso.Picasso
 
-class AdapterMainProductsRecyclerView :
-    RecyclerView.Adapter<AdapterMainProductsRecyclerView.ProductViewHolder>() {
+class AdapterMainProductsRecyclerView : RecyclerView.Adapter<ProductViewHolder>() {
+
     private var productsList: List<ProductModel>? = null
-    lateinit var itemClicked: ItemClicked
+    private lateinit var itemClicked: ItemClicked
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : ProductViewHolder {
-
         //initialize viewHolder and its associated the view without fill data
         val viewLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.product_item, parent, false)
@@ -32,6 +34,7 @@ class AdapterMainProductsRecyclerView :
 
         viewHolder.itemView.setOnClickListener {
             itemClicked.getItemCLiked(productsList?.get(position)!!)
+
         }
     }
 
@@ -48,7 +51,7 @@ class AdapterMainProductsRecyclerView :
         notifyDataSetChanged()
     }
 
-    class ProductViewHolder(view: View) :
+    inner class ProductViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         val productName: TextView
         val productPrice: TextView

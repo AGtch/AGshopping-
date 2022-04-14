@@ -14,10 +14,32 @@
         <action
             android:id="@+id/action_mainCategoriesFragment_to_productDetails"
             app:destination="@id/productDetails" />
+        <action
+            android:id="@+id/action_mainCategoriesFragment_to_carProductFragment"
+            app:destination="@id/carProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetails"
+
         android:name="com.alycode.agshopping.ui.view.ProductDetails"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details">
+        <action
+            android:id="@+id/action_productDetails_to_carProductFragment"
+            app:destination="@id/carProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carProductFragment"
+        android:name="com.alycode.agshopping.ui.view.CarProductFragment"
+        android:label="fragment_car_product"
+        tools:layout="@layout/fragment_car_product">
+        <action
+            android:id="@+id/action_carProductFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.alycode.agshopping.ui.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

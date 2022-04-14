@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/productViewImage_icCarView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/chair"
+            android:transitionName="product_Image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/product_price_inCarView"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/app_name"
+            app:layout_constraintEnd_toEndOf="@+id/product_name_inCarView"
+            app:layout_constraintStart_toStartOf="@+id/product_name_inCarView"
+            app:layout_constraintTop_toBottomOf="@+id/product_name_inCarView" />
+
+        <TextView
+            android:id="@+id/product_name_inCarView"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:hint="@string/app_name"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/product_name_inCarView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/productViewImage_icCarView"
+            app:layout_constraintTop_toTopOf="@+id/productViewImage_icCarView" />
+
+        <ImageButton
+            android:id="@+id/increaseNumberOfProduct_inCarView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/add_icon"
+            app:iconGravity="textStart"
+            app:layout_constraintStart_toStartOf="@+id/product_price_inCarView"
+            app:layout_constraintTop_toBottomOf="@+id/product_price_inCarView" />
+
+        <ImageButton
+            android:id="@+id/decrease_button_inCarView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/minus_icon"
+            app:iconGravity="textStart"
+            app:layout_constraintStart_toEndOf="@+id/counter_textview_inCarView"
+            app:layout_constraintTop_toTopOf="@+id/counter_textview_inCarView" />
+
+        <ImageButton
+            android:id="@+id/delete_after_decrease_button_inCarView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/delete_icon"
+            android:visibility="invisible"
+            app:iconGravity="textStart"
+            app:layout_constraintStart_toEndOf="@+id/counter_textview_inCarView"
+            app:layout_constraintTop_toTopOf="@+id/counter_textview_inCarView"
+            tools:layout_editor_absoluteX="248dp"
+            tools:layout_editor_absoluteY="91dp" />
+
+        <TextView
+            android:id="@+id/counter_textview_inCarView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/increaseNumberOfProduct_inCarView"
+            app:layout_constraintTop_toTopOf="@+id/increaseNumberOfProduct_inCarView" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#EF0101"
+            android:text="delete"
+            app:layout_constraintBottom_toBottomOf="@+id/decrease_button_inCarView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/decrease_button_inCarView"
+            app:layout_constraintTop_toTopOf="@+id/decrease_button_inCarView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

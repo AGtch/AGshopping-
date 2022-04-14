@@ -7,15 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-       <ImageButton
-           android:layout_width="45dp"
-           android:layout_height="45dp"
-           android:background="@drawable/button_shape"
-           android:contentDescription="backButtom"
-           android:padding="8dp"
-           android:src="@drawable/left_arrow" />
+        <ImageButton
+            android:id="@+id/back_toPreviousFragmentBtn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/button_shape"
+            android:contentDescription="backButtom"
+            android:padding="8dp"
+            android:src="@drawable/left_arrow" />
 
         <ImageButton
+            android:id="@+id/navigate_to_carBtn"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="250dp"
@@ -27,7 +29,7 @@
         <ImageButton
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_marginStart="320dp"
+            android:layout_marginStart="330dp"
             android:background="@drawable/button_shape"
             android:contentDescription="backButtom"
             android:padding="8dp"

@@ -11,4 +11,5 @@ open class BaseViewModel(private val repository: ProductRepo = ProductRepo()) : 
         return repository.getAllProductFromFirebaseUsingLiveData()
     }
 
+
 }
