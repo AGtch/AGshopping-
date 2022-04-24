@@ -6,7 +6,8 @@ data class ProductModel(
     var productPrice: String? = null,
     var productQuantity: String? = null,
     var productImage: String? = null,
-    var productColors: ProductColors? = null
+    var productColors: ProductColors? = null,
+    var productQuantityToBuy: String? = "1",
 )
 
 

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.CarProductFragment">
 
     <RelativeLayout
+        android:id="@+id/product_in_car_fragmentRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
         <!-- TODO: Update blank fragment layout -->
         <TextView
             android:id="@+id/title_of_car_page"
@@ -29,7 +32,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="18dp"
             android:layout_toEndOf="@id/title_of_car_page"
-            android:text="10"
+            android:text="0"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -46,6 +49,31 @@
         <!--            android:layout_alignParentBottom="true"-->
         <!--            android:layout_centerInParent="true"-->
         <!--            android:text="go to log in" />-->
-
     </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/empty_car_hint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/empty_car_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/shopping_cart_empety"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:text="@string/oh_sorry_your_shopping_car_still_empty"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/empty_car_image"
+            app:layout_constraintVertical_bias="0.283"
+            tools:layout_editor_absoluteX="0dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

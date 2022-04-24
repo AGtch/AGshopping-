@@ -42,6 +42,9 @@ class MainCategoriesFragment : Fragment(), ItemClicked {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navController = findNavController()
+        exitTransition =
+            TransitionInflater.from(requireContext())
+                .inflateTransition(R.transition.product_list_exit_transition)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,24 +109,15 @@ class MainCategoriesFragment : Fragment(), ItemClicked {
                 TODO("Not yet implemented")
             }
         })
-
+        val imageView: ImageView = requireView().findViewById(R.id.product_image)
+        val extras = FragmentNavigatorExtras(
+            imageView to "product_transition_name"
+        )
         navController.navigate(
-            R.id.action_mainCategoriesFragment_to_productDetails
+            R.id.action_mainCategoriesFragment_to_productDetails, null, null, extras
         )
     }
 
-
-    private fun setExitToFullScreenTransition() {
-        exitTransition =
-            TransitionInflater.from(requireContext())
-                .inflateTransition(R.transition.product_list_exit_transition)
-    }
-
-    private fun setReturnFromFullScreenTransition() {
-        reenterTransition =
-            TransitionInflater.from(requireContext())
-                .inflateTransition(R.transition.transition_list_return_transition)
-    }
 }
 
 

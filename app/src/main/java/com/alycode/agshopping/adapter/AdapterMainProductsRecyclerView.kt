@@ -1,5 +1,6 @@
 package com.alycode.agshopping.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,14 +28,13 @@ class AdapterMainProductsRecyclerView : RecyclerView.Adapter<ProductViewHolder>(
 
 
     override fun onBindViewHolder(viewHolder: ProductViewHolder, position: Int) {
-        var product = productsList?.get(position)
+        val product = productsList?.get(position)
         Picasso.get().load(product!!.productImage).into(viewHolder.productImage)
         viewHolder.productName.text = product.productName
         viewHolder.productPrice.text = product.productPrice.toString()
 
         viewHolder.itemView.setOnClickListener {
             itemClicked.getItemCLiked(productsList?.get(position)!!)
-
         }
     }
 
@@ -45,6 +45,7 @@ class AdapterMainProductsRecyclerView : RecyclerView.Adapter<ProductViewHolder>(
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductData(products: List<ProductModel>, itemClicked: ItemClicked) {
         this.productsList = products
         this.itemClicked = itemClicked
@@ -53,15 +54,10 @@ class AdapterMainProductsRecyclerView : RecyclerView.Adapter<ProductViewHolder>(
 
     inner class ProductViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-        val productName: TextView
-        val productPrice: TextView
-        val productImage: ImageView
+        val productName: TextView = view.findViewById(R.id.product_name)
+        val productPrice: TextView = view.findViewById(R.id.product_price)
+        val productImage: ImageView = view.findViewById(R.id.product_image)
 
-        init {
-            productName = view.findViewById(R.id.product_name)
-            productPrice = view.findViewById(R.id.product_price)
-            productImage = view.findViewById(R.id.product_image)
-        }
     }
 
     interface ItemClicked {

@@ -65,17 +65,6 @@
             app:layout_constraintStart_toEndOf="@+id/counter_textview_inCarView"
             app:layout_constraintTop_toTopOf="@+id/counter_textview_inCarView" />
 
-        <ImageButton
-            android:id="@+id/delete_after_decrease_button_inCarView"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/delete_icon"
-            android:visibility="invisible"
-            app:iconGravity="textStart"
-            app:layout_constraintStart_toEndOf="@+id/counter_textview_inCarView"
-            app:layout_constraintTop_toTopOf="@+id/counter_textview_inCarView"
-            tools:layout_editor_absoluteX="248dp"
-            tools:layout_editor_absoluteY="91dp" />
 
         <TextView
             android:id="@+id/counter_textview_inCarView"
@@ -89,7 +78,7 @@
             app:layout_constraintTop_toTopOf="@+id/increaseNumberOfProduct_inCarView" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/deleteProductFromCar_Btn"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"

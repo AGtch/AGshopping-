@@ -8,12 +8,7 @@ import com.google.firebase.ktx.Firebase
 
 object ProductFirebase {
     var instance: ProductFirebase = ProductFirebase
-
     private val firebase: FirebaseDatabase = Firebase.database
     val rootReference: DatabaseReference = firebase.getReference("products")
 
-
-    fun getColorsReference(subChild: String): DatabaseReference {
-        return rootReference.child(subChild).child("colors")
-    }
 }

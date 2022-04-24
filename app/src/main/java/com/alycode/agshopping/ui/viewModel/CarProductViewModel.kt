@@ -9,19 +9,44 @@ import com.alycode.agshopping.data.pojo.ProductModel
 class CarProductViewModel :
     ViewModel() {
 
-    private val mutableListProduct: MutableList<ProductModel> = mutableListOf()
-    private val mutableLiveData: MutableLiveData<MutableList<ProductModel>> = MutableLiveData()
+    private val productList: MutableList<ProductModel> = mutableListOf()
+    private val productMutableLiveData: MutableLiveData<MutableList<ProductModel>> =
+        MutableLiveData()
 
+    private val totalPriceMutableLiveData: MutableLiveData<String> =
+        MutableLiveData()
 
     fun getAllProductInCarUsingLiveData(): LiveData<MutableList<ProductModel>> {
-        Log.d("sizeinlist", "LiveData-addProductToCar: ${mutableLiveData.value?.size}")
-        Log.d("sizeinlist", "List-addProductToCar: ${mutableListProduct.size}")
+        Log.d("sizeinlist", "LiveData-addProductToCar: ${productMutableLiveData.value?.size}")
+        Log.d("sizeinlist", "List-addProductToCar: ${productList.size}")
 
-        return mutableLiveData
+        return productMutableLiveData
     }
 
     fun addProductToCar(productModel: ProductModel) {
-        mutableListProduct.add(productModel)
-        mutableLiveData.value = mutableListProduct
+        productList.add(productModel)
+        totalPriceMutableLiveData.postValue(productModel.productPrice!!)
+        productMutableLiveData.value = productList
+    }
+
+    fun addPriceToTotalAmount(price: String) {
+
+        val result = totalPriceMutableLiveData.value!!.toInt() + price.toInt()
+        totalPriceMutableLiveData.postValue(
+            result.toString()
+        )
+    }
+
+    fun removePriceFromTotalAmount(price: String) {
+        Log.d("removeIt", "removePriceFromTotalAmount: ${totalPriceMutableLiveData.value}")
+        val result = totalPriceMutableLiveData.value!!.toInt().minus(price.toInt())
+        if (result >0)
+            totalPriceMutableLiveData.postValue(
+                result.toString()
+            )
+    }
+
+    fun getNewTotalPrice(): LiveData<String> {
+        return totalPriceMutableLiveData
     }
 }

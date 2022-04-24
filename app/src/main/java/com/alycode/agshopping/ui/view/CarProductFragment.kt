@@ -16,11 +16,12 @@ import com.alycode.agshopping.adapter.CarRecyclerViewAdapter
 import com.alycode.agshopping.databinding.FragmentCarProductBinding
 import com.alycode.agshopping.ui.viewModel.CarProductViewModel
 
-class CarProductFragment : Fragment() {
+class CarProductFragment : Fragment(), CarRecyclerViewAdapter.HandleClickEventOnShoppingCar,
+    ProductDetailSharedData {
 
     private var carAdapter: CarRecyclerViewAdapter = CarRecyclerViewAdapter()
 
-    private val viewModel: CarProductViewModel by activityViewModels()
+    private val carViewModel: CarProductViewModel by activityViewModels()
     private lateinit var carProductObject: FragmentCarProductBinding
     private lateinit var navController: NavController
 
@@ -37,18 +38,34 @@ class CarProductFragment : Fragment() {
         return carProductObject.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView(view)
-        viewModel.getAllProductInCarUsingLiveData().observe(viewLifecycleOwner) {
-
-            Log.d("listInRecyclerview", "onViewCreated: list in recyclerView ${it.size}")
-            carAdapter.setProductsToCarList(it)
+        var sum =0
+        carViewModel.getAllProductInCarUsingLiveData().observe(viewLifecycleOwner) {
+            Log.d("itemCount", "onViewCreated: ${carAdapter.itemCount}")
+            carAdapter.setProductsToCarList(it, this)
+            for (product in it) {
+                if (product.productPrice!!.toInt() != 0 && product.productQuantityToBuy!!.toInt() != 0) {
+                    sum += product.productPrice!!.toInt() * product.productQuantityToBuy!!.toInt()
+                    carProductObject.totalOfMoney.text = sum.toString()
+                }
+            }
+            if (carAdapter.itemCount > 0) {
+                showTheProductsInCar(
+                    carProductObject.emptyCarHint,
+                    carProductObject.productInCarFragmentRecyclerView
+                )
+            } else {
+                showTheShoppingCarIsEmpty(
+                    carProductObject.emptyCarHint,
+                    carProductObject.productInCarFragmentRecyclerView
+                )
+            }
         }
 
-//        carProductObject.gotoLoginBtn.setOnClickListener {
-//            navController.navigate(R.id.action_carProductFragment_to_loginFragment)
-//        }
     }
+
 
     private fun initRecyclerView(view: View) {
         val recyclerView: RecyclerView = view.findViewById(R.id.carProductRecyclerView)
@@ -57,4 +74,21 @@ class CarProductFragment : Fragment() {
         recyclerView.adapter = carAdapter
     }
 
+    override fun clickOnIncreaseProductBtn(productPrice: String) {
+        carViewModel.addPriceToTotalAmount(productPrice)
+        setNewTotalPrice()
+    }
+
+    override fun clickOnDecreaseProductBtn(productPrice: String) {
+        carViewModel.removePriceFromTotalAmount(productPrice)
+        setNewTotalPrice()
+    }
+
+    private fun setNewTotalPrice() {
+        carViewModel.getNewTotalPrice().observe(viewLifecycleOwner) { newTotalPrice ->
+            carProductObject.totalOfMoney.text = newTotalPrice
+        }
+    }
 }
+
+
